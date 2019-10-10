@@ -54,7 +54,7 @@
                         </a>
                     </li>
                     <li class=" ">
-                        <a href="#">
+                        <a href="{{route('tukang.index')}}">
                             <span class="pcoded-mtext">Tukang</span>
                         </a>
                     </li>
@@ -88,7 +88,7 @@
             </li>
 
             <li class="">
-                <a href="">
+                <a href="{{route('skill.index')}}">
                     <span class="pcoded-micon"><i class="feather icon-map-pin"></i></span>
                     <span class="pcoded-mtext">Keahlian</span>
                 </a>
