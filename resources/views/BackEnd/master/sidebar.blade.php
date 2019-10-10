@@ -75,9 +75,26 @@
                     <span class="pcoded-mtext">Area</span>
                 </a>
             </li>
-
         </ul>
 
+        <div class="pcoded-navigatio-lavel">Service</div>
+        <ul class="pcoded-item pcoded-left-item">
+
+            <li class="">
+                <a href="">
+                    <span class="pcoded-micon"><i class="feather icon-map-pin"></i></span>
+                    <span class="pcoded-mtext">Transaksi</span>
+                </a>
+            </li>
+
+            <li class="">
+                <a href="">
+                    <span class="pcoded-micon"><i class="feather icon-map-pin"></i></span>
+                    <span class="pcoded-mtext">Keahlian</span>
+                </a>
+            </li>
+
+        </ul>
     </div>
 </nav>
 <!-- SIDEBAREND -->

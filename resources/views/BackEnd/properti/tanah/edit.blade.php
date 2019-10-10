@@ -118,125 +118,134 @@
                                                     <h5>Form Data Tanah</h5>
                                                     <div class="card-block">
                                                         @foreach($tanah as $value2)
-                                                        <form action="{{route('tanah.update', 'tanah')}}" method="post">
-                                                            {{method_field('PUT')}}
-                                                            {{csrf_field()}}
+                                                            <form action="{{route('tanah.update', $value2->property_id)}}" method="post">
+                                                                {{method_field('PUT')}}
+                                                                {{csrf_field()}}
 
-                                                            <div class="form-group">
-                                                                <label class="col-sm-12 col-form-label">Kategori</label>
-                                                                <div class="col-sm-12">
-                                                                    <select name="cat" id="cat" class="form-control">
-                                                                        <option value="">Pilih Kategori..</option>
-                                                                        @foreach($cat as $value)
-                                                                            <option value="{{$value->cat_id}}" {{ ( $value->cat_id == $value2->cat_id) ? 'selected' : '' }}>{{$value->cat_name}}</option>
-                                                                        @endforeach
-                                                                    </select>
+                                                                <div class="form-group">
+                                                                    <label class="col-sm-12 col-form-label">Kategori</label>
+                                                                    <div class="col-sm-12">
+                                                                        <select name="cat" id="cat" class="form-control">
+                                                                            <option value="">Pilih Kategori..</option>
+                                                                            @foreach($cat as $value)
+                                                                                <option value="{{$value->cat_id}}" {{ ( $value->cat_id == $value2->cat_id) ? 'selected' : '' }}>{{$value->cat_name}}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
 
-                                                            <div class="form-group">
-                                                                <label class="col-sm-12 col-form-label">Luas Tanah</label>
-                                                                <div class="col-sm-12">
-                                                                    <input type="text" class="form-control" placeholder="e.g 14" name="land_size" id="land_size" value="{{$value2->land_size}}">
+                                                                <div class="form-group">
+                                                                    <label class="col-sm-12 col-form-label">Luas Tanah</label>
+                                                                    <div class="col-sm-12">
+                                                                        <input type="text" class="form-control" placeholder="e.g 14" name="land_size" id="land_size" value="{{$value2->land_size}}">
+                                                                    </div>
                                                                 </div>
-                                                            </div>
 
-                                                            <div class="form-group">
-                                                                <label class="col-sm-12 col-form-label">Status</label>
-                                                                <div class="col-sm-12">
-                                                                    <select name="status" id="status" class="form-control">
-                                                                        <option value="">Pilih status..</option>
-                                                                        <option value="jual" {{ ( 'jual' == $value2->status) ? 'selected' : '' }}>Jual</option>
-                                                                        <option value="sewa" {{ ( 'sewa' == $value2->status) ? 'selected' : '' }}>Sewa</option>
-                                                                        <option value="jualsewa" {{ ( 'jualsewa' == $value2->status) ? 'selected' : '' }}>Jual/Sewa</option>
-                                                                    </select>
+                                                                <div class="form-group">
+                                                                    <label class="col-sm-12 col-form-label">Status</label>
+                                                                    <div class="col-sm-12">
+                                                                        <select name="status" id="status" class="form-control">
+                                                                            <option value="">Pilih status..</option>
+                                                                            <option value="jual" {{ ( 'jual' == $value2->status) ? 'selected' : '' }}>Jual</option>
+                                                                            <option value="sewa" {{ ( 'sewa' == $value2->status) ? 'selected' : '' }}>Sewa</option>
+                                                                            <option value="jualsewa" {{ ( 'jualsewa' == $value2->status) ? 'selected' : '' }}>Jual/Sewa</option>
+                                                                        </select>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
 
-                                                            <div class="form-group" style="display: none" id="jual">
-                                                                <label class="col-sm-12 col-form-label">Harga Jual</label>
-                                                                <div class="col-sm-12">
-                                                                    <input type="text" class="form-control" placeholder="e.g 125JT" name="cash_price" id="cash_price" value="{{$value2->cash_price}}">
+                                                                <div class="form-group" style="display: none" id="jual">
+                                                                    <label class="col-sm-12 col-form-label">Harga Jual</label>
+                                                                    <div class="col-sm-12">
+                                                                        <input type="text" class="form-control" placeholder="e.g 125JT" name="cash_price" id="cash_price" value="{{$value2->cash_price}}">
+                                                                    </div>
                                                                 </div>
-                                                            </div>
 
-                                                            <div class="form-group status2" style="display: none" id="sewa">
-                                                                <label class="col-sm-12 col-form-label">Harga Sewa</label>
-                                                                <div class="col-sm-12">
-                                                                    <input type="text" class="form-control" placeholder="e.g 125/Tahun" name="rent_price" id="rent_price" value="{{$value2->rent_price}}">
+                                                                <div class="form-group status2" style="display: none" id="sewa">
+                                                                    <label class="col-sm-12 col-form-label">Harga Sewa</label>
+                                                                    <div class="col-sm-12">
+                                                                        <input type="text" class="form-control" placeholder="e.g 125/Tahun" name="rent_price" id="rent_price" value="{{$value2->rent_price}}">
+                                                                    </div>
                                                                 </div>
-                                                            </div>
 
-                                                            <div class="form-group">
-                                                                <label class="col-sm-12 col-form-label">Mitra</label>
-                                                                <div class="col-sm-12">
-                                                                    <select name="company" id="company" class="form-control">
-                                                                        <option value="">Pilih Mitra..</option>
-                                                                        @foreach($company as $value)
-                                                                            <option value="{{$value->company_id}}" {{ ( $value->company_id == $value2->company_id) ? 'selected' : '' }}>{{$value->company_name}}</option>
-                                                                        @endforeach
-                                                                    </select>
+                                                                <div class="form-group">
+                                                                    <label class="col-sm-12 col-form-label">Mitra</label>
+                                                                    <div class="col-sm-12">
+                                                                        <select name="company" id="company" class="form-control">
+                                                                            <option value="">Pilih Mitra..</option>
+                                                                            @foreach($company as $value)
+                                                                                <option value="{{$value->company_id}}" {{ ( $value->company_id == $value2->company_id) ? 'selected' : '' }}>{{$value->company_name}}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
 
-                                                            <div class="form-group">
-                                                                <label class="col-sm-12 col-form-label">Area</label>
-                                                                <div class="col-sm-12">
-                                                                    <select name="area" id="area" class="form-control">
-                                                                        <option value="">Pilih Area..</option>
-                                                                        @foreach($area as $value)
-                                                                            <option value="{{$value->area_id}}" {{ ( $value->area_id == $value2->area_id) ? 'selected' : '' }}>{{$value->area_name}}</option>
-                                                                        @endforeach
-                                                                    </select>
+                                                                <div class="form-group">
+                                                                    <label class="col-sm-12 col-form-label">Area</label>
+                                                                    <div class="col-sm-12">
+                                                                        <select name="area" id="area" class="form-control">
+                                                                            <option value="">Pilih Area..</option>
+                                                                            @foreach($area as $value)
+                                                                                <option value="{{$value->area_id}}" {{ ( $value->area_id == $value2->area_id) ? 'selected' : '' }}>{{$value->area_name}}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
 
-                                                            <div class="form-group">
-                                                                <label class="col-sm-12 col-form-label">Tipe Sertifikat</label>
-                                                                <div class="col-sm-12">
-                                                                    <select name="type_certificate" id="type_certificate" class="form-control">
-                                                                        <option value="">Pilih Tipe Sertifikat..</option>
-                                                                        <option value="SH" {{ ( 'SH' == $value2->type_certificate) ? 'selected' : '' }}>SH</option>
-                                                                    </select>
+                                                                <div class="form-group">
+                                                                    <label class="col-sm-12 col-form-label">Tipe Sertifikat</label>
+                                                                    <div class="col-sm-12">
+                                                                        <select name="type_certificate" id="type_certificate" class="form-control">
+                                                                            <option value="">Pilih Tipe Sertifikat..</option>
+                                                                            <option value="SH" {{ ( 'SH' == $value2->type_certificate) ? 'selected' : '' }}>SH</option>
+                                                                        </select>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
 
-                                                            <div class="form-group">
-                                                                <label class="col-sm-12 col-form-label">Latitude</label>
-                                                                <div class="col-sm-12">
-                                                                    <input type="text" class="form-control" placeholder="e.x -09.001231" name="lat" id="lat" value="{{$value2->lat}}">
+                                                                <div class="form-group">
+                                                                    <label class="col-sm-12 col-form-label">Latitude</label>
+                                                                    <div class="col-sm-12">
+                                                                        <input type="text" class="form-control" placeholder="e.x -09.001231" name="lat" id="lat" value="{{$value2->lat}}">
+                                                                    </div>
                                                                 </div>
-                                                            </div>
 
-                                                            <div class="form-group">
-                                                                <label class="col-sm-12 col-form-label">Longitude</label>
-                                                                <div class="col-sm-12">
-                                                                    <input type="text" class="form-control" placeholder="e.x 16.012111" name="long" id="long" value="{{$value2->long}}">
+                                                                <div class="form-group">
+                                                                    <label class="col-sm-12 col-form-label">Longitude</label>
+                                                                    <div class="col-sm-12">
+                                                                        <input type="text" class="form-control" placeholder="e.x 16.012111" name="long" id="long" value="{{$value2->long}}">
+                                                                    </div>
                                                                 </div>
-                                                            </div>
 
-                                                            <div class="form-group">
-                                                                <label class="col-sm-12 col-form-label">Alamat</label>
-                                                                <div class="col-sm-12">
+                                                                <div class="form-group">
+                                                                    <label class="col-sm-12 col-form-label">Alamat</label>
+                                                                    <div class="col-sm-12">
                                                                      <textarea class="form-control" id="address" name="address" cols="30"
                                                                                rows="5">{{$value2->address}}</textarea>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
 
-                                                            <div class="form-group">
-                                                                <label class="col-sm-12 col-form-label">Deskripsi</label>
-                                                                <div class="col-sm-12">
+                                                                <div class="form-group">
+                                                                    <label class="col-sm-12 col-form-label">Deskripsi</label>
+                                                                    <div class="col-sm-12">
                                                                      <textarea class="form-control" id="description" name="description" cols="30"
                                                                                rows="5">{{$value2->description}}</textarea>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
 
-                                                            <div class="form-group" style="float: right">
-                                                                <div class="col-sm-12">
-                                                                    <button type="submit" class="btn btn-sm btn-primary">Next</button>
+                                                                <div class="form-group">
+                                                                    <label class="col-sm-12 col-form-label">Gambar</label>
+                                                                    @foreach($gambar as $value3)
+                                                                        <div class="col-sm-5">
+                                                                            <img src="{{asset('/images/tanah/' .$value3->image_name)}}" alt="Tidak ada gambar" height="150px" width="260px" class="form-control">
+                                                                        </div>
+                                                                    @endforeach
                                                                 </div>
-                                                            </div>
-                                                        </form>
+
+                                                                <div class="form-group" style="float: right">
+                                                                    <div class="col-sm-12">
+                                                                        <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
                                                         @endforeach
                                                     </div>
                                                 </div>
@@ -276,6 +285,35 @@
 {{--hide show selector--}}
 <script>
     $(document).ready(function(){
+        $('#status').on('change', function() {
+            if ( this.value == 'jualsewa')
+            {
+                $("#jual").show();
+                $("#sewa").show();
+            }
+            if (this.value == 'jual')
+            {
+                $("#jual").show();
+                $("#sewa").hide();
+                $("#rent_price").val('');
+            }
+            if (this.value == 'sewa')
+            {
+                $("#sewa").show();
+                $("#jual").hide();
+                $("#cash_price").val('');
+            }
+            else
+            {
+                $("#divid").hide();
+            }
+        });
+    });
+</script>
+
+{{--hide show selector--}}
+<script>
+    $(document).ready(function(){
         $('#status').show(function() {
             if ( this.value == 'jualsewa')
             {
@@ -299,6 +337,8 @@
         });
     });
 </script>
+
+
 
 <!--Forms - Wizard js-->
 <script src="{{asset('files\bower_components\jquery.cookie\js\jquery.cookie.js')}}"></script>

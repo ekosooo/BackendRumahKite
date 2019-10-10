@@ -85,7 +85,11 @@ class TanahController extends Controller
             ->where('property_id', '=', $id)
             ->get();
 
-        return view('BackEnd.properti.tanah.edit', compact('tanah', 'company', 'area', 'cat'));
+        $gambar = DB::table('image')
+            ->where('property_id', '=', $id)
+            ->get();
+
+        return view('BackEnd.properti.tanah.edit', compact('tanah', 'company', 'area', 'cat', 'gambar'));
     }
 
     /**
@@ -106,9 +110,25 @@ class TanahController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,  $id)
     {
-        //
+        $properti = \App\Properti::find($id);
+        $properti->update([
+            'area_id'     => $request->area,
+            'company_id'  => $request->company,
+            'cat_id'      => $request->cat,
+            'address'     => $request->address,
+            'description' => $request->description,
+            'land_size'   => $request->land_size,
+            'lat'         => $request->lat,
+            'long'        => $request->long,
+            'rent_price'    => $request->rent_price,
+            'cash_price'    => $request->cash_price,
+            'type_certificate'   => $request->type_certificate,
+            'status'             => $request->status
+        ]);
+
+        return redirect('/tanah');
     }
 
     /**
