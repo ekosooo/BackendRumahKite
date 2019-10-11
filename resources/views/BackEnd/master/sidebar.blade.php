@@ -81,7 +81,7 @@
         <ul class="pcoded-item pcoded-left-item">
 
             <li class="">
-                <a href="">
+                <a href="{{route('jasa.index')}}">
                     <span class="pcoded-micon"><i class="feather icon-map-pin"></i></span>
                     <span class="pcoded-mtext">Transaksi</span>
                 </a>

@@ -16,6 +16,11 @@ class User extends Authenticatable
         'user_id', 'user_name', 'user_email', 'user_password', 'user_phone', 'role',
     ];
 
+    public function transaksijasa()
+    {
+        return $this->hasMany(TransaksiJasa::class);
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *
