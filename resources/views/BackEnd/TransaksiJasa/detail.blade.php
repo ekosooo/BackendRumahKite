@@ -134,7 +134,7 @@
                                                         <div class="slide"></div>
                                                     </li>
                                                     <li class="nav-item m-b-0">
-                                                        <a class="nav-link f-18 p-b-0" data-toggle="tab" href="#review" role="tab">Tindakan</a>
+                                                        <a class="nav-link f-18 p-b-0" data-toggle="tab" href="#tindakan" role="tab">Tindakan</a>
                                                         <div class="slide"></div>
                                                     </li>
                                                 </ul>
@@ -196,7 +196,29 @@
                                                                 </tbody>
                                                             </table>
                                                         </div>
-                                                        <div class="tab-pane" id="review" role="tabpanel">
+                                                        <div class="tab-pane" id="tindakan" role="tabpanel">
+                                                            <div class="row">
+                                                                <div class="col-lg-6">
+                                                                    <div id="map-canvas" style="width: 100%; height: 380px;"></div>
+                                                                </div>
+
+                                                                <div class="col-lg-6">
+
+                                                                    <div class="form-group">
+                                                                        <label class="col-sm-12 col-form-label">Nama Tukang</label>
+                                                                        <div class="col-sm-12">
+                                                                            <input type="text" class="form-control"  name="handyman_name" id="handyman_name">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="col-sm-12 col-form-label">Telepon</label>
+                                                                        <div class="col-sm-12">
+                                                                            <input type="text" class="form-control"  name="handyman_phone" id="handyman_phone">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
 
                                                         </div>
                                                     </div>
@@ -231,6 +253,71 @@
 
     gtag('config', 'UA-23581568-13');
 </script>
+{{--API MAPS--}}
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLVUltI28Rc8tpWWBc0P3qdTWciWRmNn8&callback=initMap">
+</script>
+
+<script>
+    function initMap() {
+
+                @foreach($detail as $value)
+        var posisi = {lat: {{$value->service_lat}},  lng: {{$value->service_long}}};
+                @endforeach
+        var map = new google.maps.Map(
+            document.getElementById('map-canvas'), {
+                zoom: 16,
+                center: posisi});
+        var marker = new google.maps.Marker({position: posisi, map: map});
+
+
+
+        var locations = [
+                @foreach($tukang as $value)
+            [{{ $value->handyman_lat }}, {{ $value->handyman_long }} ],
+            @endforeach
+        ];
+
+        var info = [
+                @foreach($tukang as $value)
+                    ['{{$value->handyman_name}}', '{{$value->handyman_phone}}'],
+                @endforeach
+        ];
+
+        var data = [
+                @foreach($tukang as $value)
+            ['Nik : {{$value->handyman_name}}<br> Nama : {{$value->handyman_phone}}<br>'],
+            @endforeach
+        ];
+
+        console.log(data);
+        console.log(info);
+        console.log(locations);
+
+        var infowindow = new google.maps.InfoWindow();
+        var marker, i;
+        for (i = 0; i < locations.length; i++) {
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[i][0], locations[i][1]),
+                map: map,
+                icon: {
+                    url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+                }
+            });
+
+            google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                return function () {
+                    infowindow.setContent(data[i][0]);
+                    document.getElementById('handyman_name').value = info[i][0];
+                    document.getElementById('handyman_phone').value = info[i][1];
+                    infowindow.open(map, marker);
+                }
+            })(marker, i));
+        }
+    }
+
+</script>
+
 
 </body>
 
