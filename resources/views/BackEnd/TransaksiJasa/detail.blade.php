@@ -103,22 +103,23 @@
                                                         </div>
                                                         <div class="col-lg-7 col-xs-12 product-detail" id="product-detail">
                                                             <div class="row">
-                                                                <div>
-                                                                    <div class="col-lg-12">
-                                                                        <span class="txt-muted d-inline-block">Status : <a href="#!"> Menunggu </a> </span>
-                                                                    </div>
-                                                                    <div class="col-lg-12">
-                                                                        <h4 class="pro-desc">Pemesanan Tukang Cat</h4>
-                                                                    </div>
-                                                                    <div class="col-lg-12">
-                                                                        <span class="text-primary product-price"><i class="icofont icofont-cur-dollar"></i>Rp. 130000</span>
-                                                                        <hr>
-                                                                        <p>Disini Isi Keterangan dari konsumen
-                                                                        </p>
-                                                                        <hr>
-                                                                    </div>
+                                                                @foreach($detail as $value)
+                                                                    <div>
+                                                                        <div class="col-lg-12">
+                                                                            <span class="txt-muted d-inline-block">Status :  {{$value->service_status}} </span>
+                                                                        </div>
+                                                                        <div class="col-lg-12">
+                                                                            <h4 class="pro-desc">Pemesanan Tukang {{$value->skill_name}}</h4>
+                                                                        </div>
+                                                                        <div class="col-lg-12">
+                                                                            <span class="text-primary product-price"><i class="icofont icofont-cur-dollar"></i>Rp. 300000</span>
+                                                                            <hr>
+                                                                            <p>{{$value->service_description}}</p>
+                                                                            <hr>
+                                                                        </div>
+                                                                        @endforeach
 
-                                                                </div>
+                                                                    </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -149,50 +150,55 @@
                                                         <div class="tab-pane active" id="description" role="tabpanel">
                                                             <table class="table">
                                                                 <tbody>
-                                                                <tr>
-                                                                    <td class="col-lg-2">Kode Pesanan</td>
-                                                                    <td class="col-lg-10">#CAT00123</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="col-lg-2">Nama</td>
-                                                                    <td class="col-lg-10">Rizqi Mauludin</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="col-lg-2">Telepon</td>
-                                                                    <td class="col-lg-10">+628999327717</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="col-lg-2">Tanggal</td>
-                                                                    <td class="col-lg-10">2019-08-18</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="col-lg-2">Hari</td>
-                                                                    <td class="col-lg-10">2</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="col-lg-2">Harga / Hari</td>
-                                                                    <td class="col-lg-10">Rp. 130000</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="col-lg-2">Total</td>
-                                                                    <td class="col-lg-10">Rp. 300000</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="col-lg-2">Alamat</td>
-                                                                    <td class="col-lg-10">Jalan Adisucipto Gg.Terata No.25</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="col-lg-2">Tukang</td>
-                                                                    <td class="col-lg-10"></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="col-lg-2">No Telepon Tukang</td>
-                                                                    <td class="col-lg-10"></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="col-lg-2">Status</td>
-                                                                    <td class="col-lg-10">Menunggu</td>
-                                                                </tr>
+                                                                @foreach($detail as $value)
+                                                                    <tr>
+                                                                        <td class="col-lg-2">Kode Pesanan</td>
+                                                                        <td class="col-lg-10">{{$value->service_transaction_id}}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-lg-2">Nama</td>
+                                                                        <td class="col-lg-10">{{$value->user_name}}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-lg-2">Telepon</td>
+                                                                        <td class="col-lg-10">{{$value->user_phone}}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-lg-2">Tanggal</td>
+                                                                        <td class="col-lg-10">{{$value->service_order}}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-lg-2">Hari</td>
+                                                                        <td class="col-lg-10">{{$value->service_day}}</td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <td class="col-lg-2">Alamat</td>
+                                                                        <td class="col-lg-10">{{$value->service_address}}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-lg-2">Status</td>
+                                                                        <td class="col-lg-10">{{$value->service_status}}</td>
+                                                                    </tr>
+                                                                @endforeach
+                                                                @foreach($detailtukang as $value)
+                                                                    <tr>
+                                                                        <td class="col-lg-2">Tukang</td>
+                                                                        <td class="col-lg-10">{{$value->handyman_name}}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-lg-2">No Telepon Tukang</td>
+                                                                        <td class="col-lg-10">{{$value->handyman_phone}}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-lg-2">Harga / Hari</td>
+                                                                        <td class="col-lg-10">{{$value->handyman_price}}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-lg-2">Total</td>
+                                                                        <td class="col-lg-10">Rp. 300000</td>
+                                                                    </tr>
+                                                                @endforeach
                                                                 </tbody>
                                                             </table>
                                                         </div>
@@ -210,12 +216,44 @@
                                                                             <input type="text" class="form-control"  name="handyman_name" id="handyman_name">
                                                                         </div>
                                                                     </div>
+
                                                                     <div class="form-group">
                                                                         <label class="col-sm-12 col-form-label">Telepon</label>
                                                                         <div class="col-sm-12">
                                                                             <input type="text" class="form-control"  name="handyman_phone" id="handyman_phone">
                                                                         </div>
                                                                     </div>
+
+                                                                    <div class="form-group">
+                                                                        <label class="col-sm-12 col-form-label">Status</label>
+                                                                        <div class="col-sm-12">
+                                                                            <select name="status" id="status" class="form-control">
+                                                                                <option value="Menunggu">Menunggu</option>
+                                                                                <option value="Survei">Survei</option>
+                                                                                <option value="Selesai">Selesai</option>
+                                                                                <option value="Ditolak">Ditolak</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <form action="{{route('verifikasi.tukang'), 'tukang'}}" method="post">
+                                                                        {{method_field('PUT')}}
+                                                                        {{csrf_field()}}
+                                                                        <div class="form-group">
+                                                                            @foreach($detail as $value)
+                                                                                <input type="hidden" name="service_transaction_id" id="service_transaction_id" value="{{$value->service_transaction_id}}">
+                                                                            @endforeach
+                                                                            <div class="col-sm-12">
+                                                                                <input type="hidden" class="form-control"  name="handyman_id" id="handyman_id">
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-group" style="float: right">
+                                                                            <div class="col-sm-12">
+                                                                                <button type="submit" class="btn btn-sm btn-primary">Verifikasi Tukang</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
                                                                 </div>
 
                                                             </div>
@@ -280,8 +318,8 @@
 
         var info = [
                 @foreach($tukang as $value)
-                    ['{{$value->handyman_name}}', '{{$value->handyman_phone}}'],
-                @endforeach
+            ['{{$value->handyman_id}}','{{$value->handyman_name}}', '{{$value->handyman_phone}}'],
+            @endforeach
         ];
 
         var data = [
@@ -298,7 +336,7 @@
         var marker, i;
         for (i = 0; i < locations.length; i++) {
             marker = new google.maps.Marker({
-                position: new google.maps.LatLng(locations[i][0], locations[i][1]),
+                position: new google.maps.LatLng(locations[i][0], locations[i][1], locations[i][2]),
                 map: map,
                 icon: {
                     url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
@@ -308,8 +346,9 @@
             google.maps.event.addListener(marker, 'click', (function (marker, i) {
                 return function () {
                     infowindow.setContent(data[i][0]);
-                    document.getElementById('handyman_name').value = info[i][0];
-                    document.getElementById('handyman_phone').value = info[i][1];
+                    document.getElementById('handyman_id').value = info[i][0];
+                    document.getElementById('handyman_name').value = info[i][1];
+                    document.getElementById('handyman_phone').value = info[i][2];
                     infowindow.open(map, marker);
                 }
             })(marker, i));

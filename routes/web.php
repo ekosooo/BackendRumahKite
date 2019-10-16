@@ -34,3 +34,4 @@ Route::get('add/skill', 'TukangController@viewskill')->name('skill.view');
 Route::post('add/skill/post', 'TukangController@skillpost')->name('skill.post');
 Route::get('add-area', 'AreaController@add')->name('area.add');
 Route::resource('jasa', 'JasaController');
+Route::put('verifikasi/tukang', 'JasaController@verifikasi')->name('verifikasi.tukang');
