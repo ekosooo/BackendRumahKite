@@ -134,10 +134,14 @@
                                                         <a class="nav-link active f-18 p-b-0" data-toggle="tab" href="#description" role="tab">Detail Pemesanan</a>
                                                         <div class="slide"></div>
                                                     </li>
-                                                    <li class="nav-item m-b-0">
-                                                        <a class="nav-link f-18 p-b-0" data-toggle="tab" href="#tindakan" role="tab">Tindakan</a>
-                                                        <div class="slide"></div>
-                                                    </li>
+                                                    @foreach($detail as $value)
+                                                        @if($value->service_status == 'Menunggu')
+                                                            <li class="nav-item m-b-0">
+                                                                <a class="nav-link f-18 p-b-0" data-toggle="tab" href="#tindakan" role="tab">Tindakan</a>
+                                                                <div class="slide"></div>
+                                                            </li>
+                                                        @endif
+                                                    @endforeach
                                                 </ul>
                                             </div>
                                             <!-- Nav tabs start-->
@@ -199,6 +203,35 @@
                                                                         <td class="col-lg-10">Rp. 300000</td>
                                                                     </tr>
                                                                 @endforeach
+
+                                                                @foreach($detail as $value)
+                                                                    @if($value->service_status != 'Menunggu')
+                                                                        <form action="{{route('update.status.tukang')}}" method="post">
+                                                                            {{method_field('PUT')}}
+                                                                            {{csrf_field()}}
+                                                                            <tr>
+                                                                                <td class="col-lg-2">UPDATE STATUS</td>
+                                                                                <td class="col-lg-10">
+                                                                                    <input type="hidden" name="service_transaction_id" id="service_transaction_id" value="{{$value->service_transaction_id}}">
+                                                                                    <select name="status" id="status" class="form-control">
+                                                                                        <option value="Menunggu" {{ ($value->service_status == 'Menunggu') ? 'selected' : '' }}>Menunggu</option>
+                                                                                        <option value="Survei" {{ ($value->service_status == 'Survei') ? 'selected' : '' }}>Survei</option>
+                                                                                        <option value="Selesai" {{ ($value->service_status == 'Selesai') ? 'selected' : '' }}>Selesai</option>
+                                                                                        <option value="Ditolak" {{ ($value->service_status == 'Ditolak') ? 'selected' : '' }}>Ditolak</option>
+                                                                                    </select>
+                                                                                </td>
+                                                                            </tr>
+
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td style="float: right">
+                                                                                    <button class="btn btn-sm btn-primary">UPDATE</button>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </form>
+                                                                    @endif
+                                                                @endforeach
+
                                                                 </tbody>
                                                             </table>
                                                         </div>
@@ -264,7 +297,6 @@
                                             </div>
                                             <!-- Nav tabs card end-->
                                         </div>
-
                                     </div>
                                 </div>
                             </div>

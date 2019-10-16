@@ -35,3 +35,4 @@ Route::post('add/skill/post', 'TukangController@skillpost')->name('skill.post');
 Route::get('add-area', 'AreaController@add')->name('area.add');
 Route::resource('jasa', 'JasaController');
 Route::put('verifikasi/tukang', 'JasaController@verifikasi')->name('verifikasi.tukang');
+Route::put('updata/status/tukang', 'JasaController@statustukang')->name('update.status.tukang');
